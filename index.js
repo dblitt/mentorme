@@ -17,7 +17,8 @@ let missingEnvVars = '';
     // 'MONGO_USER',
     // 'MONGO_PW',
     'MONGO_DB',
-    'SESSION_SECRET'
+    'SESSION_SECRET',
+    'OPENAI_API_KEY'
 ].forEach(envVar => {
     if (typeof process.env[envVar] === 'undefined') {
         missingEnvVars += envVar + ' ';

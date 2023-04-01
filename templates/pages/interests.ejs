@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MentorMe</title>
+        <%- include ('../partials/head.ejs') %>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+        <!-- Bulma Version 0.7.1-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
+        <link rel="stylesheet" href="/main-hero.css">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div style="flex: 1 0 auto;">
+            <section class="hero is-info is-small is-bold">
+                <div class="hero-head">
+                    <nav class="navbar">
+                        <div class="container">
+                            <div class="navbar-brand">
+                                <span class="navbar-item">
+                                    <img src="/short.png" alt="Logo">
+                                </span>
+                                <span class="navbar-burger burger" data-target="navbarMenu">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </div>
+                            <div id="navbarMenu" class="navbar-menu">
+                                <div class="navbar-end">
+                                    <div class="tabs is-right">
+                                        <span class="navbar-item">
+                                            <a class="button is-white is-outlined" href="/logout">
+                                                <span class="icon">
+                                                    <i class="fas fa-lock"></i>
+                                                </span>
+                                                <span title="Logout">Logout</span>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="hero-body">
+                    <div class="container has-text-centered">
+                        <p class="is-size-2">
+                            <span class="has-text-weight-semibold">Hey, <%= firstName %>!</span>
+                        </p>
+                        <p class="is-size-3" style="line-height: normal;">
+                            Tell us about yourself so we can match you with a Mentor.
+                        </p>
+                        <!-- <div id="main-image-div">
+                            <img src="/mentorme-big.png" alt="MentorMe Logo" id="main-image">
+                        </div> -->
+                        <h2 class="subtitle">
+                        MentorMe uses AI technology to match you with a college Mentor based on your interests and experiences.
+                        </h2>
+                    </div>
+                </div>
+            </section>
+            <!-- <div class="box cta">
+                <p class="has-text-centered">
+                    <span class="tag is-warning">Notice</span>&nbsp;&nbsp;TODO: replace this later
+                </p>
+            </div> -->
+            <section class="container" id="bottom-text">
+                <div class="column is-8 is-offset-2" style="text-align: center; padding: 2rem 0 0 0;">
+                    <h2 class="title is-size-4" style="letter-spacing: -0.5px;">Here are some examples of responses:</h2><br>
+                    <!-- <p class="subtitle">MentorMe is .........<br><b><a href="/join">Join Now!</a></b></p> -->
+                </div>
+                <div class="columns">
+                    <div class="column languagebox">
+                        <div class="card language-box-card">
+                            <div class="card-content">
+                                <p class="language-box-text is-size-5">
+                                    <!-- Hey, what's up? My name is Tyler and I'm a high school student. I'm a junior and I'm really into sports, especially basketball and football. I'm on the varsity teams for both sports and love the thrill of competition. When I'm not on the court or field, I enjoy hanging out with my friends and playing video games. I'm also into music and love discovering new hip hop artists. I even dabble in making beats on my laptop. Academically, I'm not the strongest student, but I work hard and try my best. Math is my least favorite subject, but I'm pretty good at history and social studies. I'm still figuring out what I want to do after high school, but I'm considering joining the military or pursuing a career in sports. Overall, I'm a laid-back guy who enjoys having a good time and pushing myself to be the best athlete I can be. -->
+                                    Hi, I'm Tyler, a high school junior who loves basketball, football, and music, especially hip hop. In my free time, I enjoy discovering new artists and even dabble in making beats on my laptop. Although not a strong student, I work hard and excel in history and social studies. I'm considering a career in sports or joining the military after graduation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column languagebox">
+                        <div class="card language-box-card">
+                            <div class="card-content">
+                                <p class="language-box-text is-size-5">
+                                    I'm Mia, a science and technology enthusiast and high school senior. I enjoy playing the piano and guitar, hiking, and volunteering at an animal shelter. I'm part of the National Honor Society and plan to major in computer science in college. I'm passionate about animal welfare and reducing my carbon footprint, and I'm always eager to learn and grow.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-8 is-offset-2" style="text-align: center; padding: 2rem 0 0 0;">
+                    <h2 class="title is-size-4" style="letter-spacing: -0.5px;">Now, tell us about yourself:</h2><br>
+                </div>
+                <div class="container has-text-centered is-centered" style="max-width: 900px;">
+                    <div class="field">
+                        <!-- <label class="label">Message</label> -->
+                        <div class="control">
+                            <textarea id="interests-input" class="textarea" placeholder="Give a description of yourself..."></textarea>
+                        </div>
+                    </div>
+                    <button id="submit-button" class="button is-info is-medium">Submit!</button>
+                </div>
+                <!-- <div class="columns is-centered">
+                    <div class="column">
+                    </div>
+                </div> -->
+                <div class="has-text-centered">
+                    
+                </div>
+
+            </section>
+        </div>
+        <%- include ('../partials/footer.ejs') %>
+        <script type="text/javascript">
+<%- include ('../scripts/burger.ejs') %>
+
+function submitAction() {
+    axios.post('/api/v1/interests', {
+        interests: document.getElementById('interests-input').value
+    }).then(function (response) {
+        if (response.data.success) {
+            window.location = response.data.redirectTo;
+        }
+    });
+}
+
+document.getElementById('submit-button').onclick = submitAction;
+// document.body.addEventListener('keydown', function (event) {
+//     if (event.keyCode === 13 && event.repeat === false) {
+//         submitAction();
+//     }
+// });
+
+        </script>
+    </body>
+</html>

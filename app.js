@@ -15,9 +15,10 @@ const apiV1 = require('./api/v1/v1.js');
 // const slackInviteRoute = require('./routes/slackInvite.js');
 // const dashboardRoute = require('./routes/dashboard.js');
 const homeRoute = require('./routes/home.js');
-// const logoutRoute = require('./routes/logout.js');
+const logoutRoute = require('./routes/logout.js');
 const loginRoute = require('./routes/login.js');
-// const joinRoute = require('./routes/join.js');
+const joinRoute = require('./routes/join.js');
+const interestsRoute = require('./routes/interests.js');
 // const projectsRoute = require('./routes/projects.js');
 // const calendarRoute = require('./routes/calendar.js');
 
@@ -108,8 +109,9 @@ app.use((req, res, next) => {
 app.use('/api/v1', apiV1);
 app.use('/', homeRoute);
 app.use('/login', loginRoute);
-// app.use('/logout', logoutRoute);
-// app.use('/join', joinRoute);
+app.use('/logout', logoutRoute);
+app.use('/join', joinRoute);
+app.use('/interests', interestsRoute);
 // app.use('/leaderboard', leaderboardRoute);
 // app.use('/admin', adminRoute);
 // app.use('/slack_invite', slackInviteRoute);

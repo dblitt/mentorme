@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-    const resOptions = {};
-    resOptions.loggedIn = req.session.loggedIn ?? false;
-    res.render('pages/index.ejs', resOptions);
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+    } else {
+        res.render('pages/register.ejs');
+    }
 });
 
 module.exports = router;

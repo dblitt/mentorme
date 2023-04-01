@@ -5,6 +5,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    user_type: {
+        type: String,
+        enum: ['mentor', 'mentee'],
+        required: true
+    },
+    interests: {
+        type: String
+    },
     first_name: {
         type: String
     },
@@ -12,6 +20,10 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     password: {
+        type: String
+    },
+    // mentor is if user is a mentee (their assignment) and will be an object _id
+    mentor: {
         type: String
     }
 });
