@@ -11,21 +11,21 @@ const path = require('path');
 // Check for all required environmental variables
 let missingEnvVars = '';
 [
-  'HOST',
-  'PORT',
-  'MONGO_HOST',
-  // 'MONGO_USER',
-  // 'MONGO_PW',
-  'MONGO_DB',
-  'SESSION_SECRET'
+    'HOST',
+    'PORT',
+    'MONGO_HOST',
+    // 'MONGO_USER',
+    // 'MONGO_PW',
+    'MONGO_DB',
+    'SESSION_SECRET'
 ].forEach(envVar => {
-  if (typeof process.env[envVar] === 'undefined') {
-    missingEnvVars += envVar + ' ';
-  }
+    if (typeof process.env[envVar] === 'undefined') {
+        missingEnvVars += envVar + ' ';
+    }
 });
 if (missingEnvVars.length > 0) {
-  console.log('ERROR: Missing env vars ' + missingEnvVars);
-  process.exit(1);
+    console.log('ERROR: Missing env vars ' + missingEnvVars);
+    process.exit(1);
 }
 
 const http = require('http');
@@ -33,5 +33,5 @@ const app = require('./app.js');
 
 const server = http.createServer(app);
 server.listen(process.env.PORT, process.env.HOST, () => {
-  console.log('Server started on ' + process.env.HOST + ':' + process.env.PORT);
+    console.log('Server started on ' + process.env.HOST + ':' + process.env.PORT);
 });

@@ -35,27 +35,16 @@
                       <li><a href="/projects">Projects</a></li>
                       <li><a href="/leaderboard">Leaderboard</a></li>
                     </ul>
-                    <% /* if (typeof loggedIn !== 'undefined' && loggedIn) { */ %>
-                      <% /* if (typeof userType !== 'undefined' && userType === 'student') { */ %>
-                        <span class="navbar-item">
-                          <a class="button is-white is-outlined" href="/dashboard">
-                            <span class="icon">
-                              <i class="fas fa-tachometer-alt"></i>
-                            </span>
-                            <span title="Dashboard">Dashboard</span>
-                          </a>
-                        </span>
-                      <% /* } else if (typeof userType !== 'undefined' && userType === 'admin') { */ %>
-                        <span class="navbar-item">
-                          <a class="button is-white is-outlined" href="/admin">
-                            <span class="icon">
-                              <i class="fas fa-tachometer-alt"></i>
-                            </span>
-                            <span title="Admin">Admin</span>
-                          </a>
-                        </span>
-                      <% /* } */ %>
-                    <% /* } else { */ %>
+                    <% if (typeof loggedIn !== 'undefined' && loggedIn) { %>
+                      <span class="navbar-item">
+                        <a class="button is-white is-outlined" href="/dashboard">
+                          <span class="icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                          </span>
+                          <span title="Dashboard">Dashboard</span>
+                        </a>
+                      </span>
+                    <% } else { %>
                       <span class="navbar-item">
                         <a class="button is-white is-outlined" href="/login">
                           <span class="icon">
@@ -64,7 +53,7 @@
                           <span title="Login">Login</span>
                         </a>
                       </span>
-                    <% /* } */ %>
+                    <% } %>
                   </div>
                   <!-- <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link" href="/documentation/overview/start/">
@@ -90,7 +79,7 @@
         <div class="hero-body">
           <div class="container has-text-centered">
             <div id="main-image-div">
-              <img src="/icon-fs8.png" alt="SLUH Hack Club" id="main-image">
+              <img src="/mentorme-big.png" alt="MentorMe Logo" id="main-image">
             </div>
             <h2 class="subtitle">
             SLUH Hack Club is a programming club focused on <b>making</b>. We have monthly <b>programming competitions</b> where we compete to make the best project using the skills learned in the club.
