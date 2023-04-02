@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
             console.error(err)
         })
     } else {
-        res.redirect('/');
+        res.redirect('/dashboard');
     }
 });
 
