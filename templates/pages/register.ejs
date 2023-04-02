@@ -140,20 +140,21 @@ input.login-error, input.login-error:hover, input.login-error:focus, input.login
 // }
 function registerAction() {
     // Fuck it we ball
-    axios.post('/api/v1/register', {
-        email: document.getElementById('email-input').value,
-        password: document.getElementById('password-input').value,
-        passwordConfirm: document.getElementById('password-confirm').value,
-        firstName: document.getElementById('firstname-input').value,
-        lastName: document.getElementById('lastname-input').value,
-        highschool: document.getElementById('highschool-input').value
-    }).then(function (response) {
-        if (response.data.success) {
-            if (response.data.loggedIn) {
-                window.location = response.data.redirectTo;
-            }
-        }
-    });
+    // axios.post('/api/v1/register', {
+    //     email: document.getElementById('email-input').value,
+    //     password: document.getElementById('password-input').value,
+    //     passwordConfirm: document.getElementById('password-confirm').value,
+    //     firstName: document.getElementById('firstname-input').value,
+    //     lastName: document.getElementById('lastname-input').value,
+    //     highschool: document.getElementById('highschool-input').value
+    // }).then(function (response) {
+    //     if (response.data.success) {
+    //         if (response.data.loggedIn) {
+    //             window.location = response.data.redirectTo;
+    //         }
+    //     }
+    // });
+    window.location = '/dashboard'
 }
 //   if (submitted) {return};
 //   // First check for any fields filled in

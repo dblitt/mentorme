@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorm Leaderboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    
+    <style>
+        h1 {
+            font-size: 3rem;
+            font-weight: normal;
+        }
+
+        p {
+            font-weight: 500;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .circle {
+            height: 4.8vw;
+            width: 4.8vw;
+            border-radius: 100rem;
+        }
+        .pill {
+            height: 2.4vw;
+            width: 12vw;
+            border-radius: 100rem;
+            margin-top: -0.95rem;
+        }
+
+        .second-third-place {
+            display: flex;
+            justify-content: center;
+            gap: 10vw;
+        }
+
+
+        .pill-container {
+            display: flex;
+            margin-top: 3rem;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pill-subcontainer {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 1.75rem;       
+        }
+
+        .pill-other {
+            display: flex;
+            justify-content: space-between;
+            background: hsl(204, 86%, 53%);
+            height: 50px;
+            width: 50vw;
+            min-width: 18rem;
+            max-width: 40rem;
+            border-radius: 10rem;
+        }
+
+        .dorm-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .numbers {
+            font-weight: bold;
+            font-size: 2rem;
+            color: black;
+        }
+
+
+        @media only screen and (max-width: 1200px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .circle {
+                height: 10vw;
+                width: 10vw;
+            }
+            .pill {
+                height: 5vw;
+                width: 24vw;
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+            .pill-container {
+                margin-top: 2rem;
+            }
+
+            .pill-subcontainer {
+            margin-bottom: 1rem;       
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+
+    <div style="flex: 1 0 auto;">
+        <section class="hero is-info is-medium is-bold">
+            <div class="hero-head">
+                <nav class="navbar">
+                    <div class="container">
+                        <div class="navbar-brand">
+                            <span class="navbar-item">
+                                <img src="/short.png" alt="Logo">
+                            </span>
+                            <span class="navbar-burger burger" data-target="navbarMenu">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </div>
+                        <div id="navbarMenu" class="navbar-menu">
+                            <div class="navbar-end">
+                                <div class="tabs is-right">
+                                    <ul>
+                                        <li><a href="/">Home</a></li>
+                                        <li><a>Contact</a></li>
+                                        <!-- <li><a href="/team">Team</a></li> -->
+                                        <!-- <li><a href="/projects">Projects</a></li> -->
+                                        <li class="is-active"><a>Leaderboard</a></li>
+                                    </ul>
+                                    <% if (typeof loggedIn !== 'undefined' && loggedIn) { %>
+                                        <span class="navbar-item">
+                                            <a class="button is-white is-outlined" href="/dashboard">
+                                                <span class="icon">
+                                                    <i class="fas fa-tachometer-alt"></i>
+                                                </span>
+                                                <span title="Dashboard">Dashboard</span>
+                                            </a>
+                                        </span>
+                                    <% } else { %>
+                                        <span class="navbar-item">
+                                            <a class="button is-white is-outlined" href="/login">
+                                                <span class="icon">
+                                                    <i class="fas fa-lock"></i>
+                                                </span>
+                                                <span title="Login">Login</span>
+                                            </a>
+                                        </span>
+                                    <% } %>
+                                </div>
+                                <!-- <div class="navbar-item has-dropdown is-hoverable">
+                                    <a class="navbar-link" href="/documentation/overview/start/">
+                                        More
+                                    </a>
+                                    <div class="navbar-dropdown is-boxed">
+                                        <a class="navbar-item" href="/documentation/overview/start/">
+                                            Mechandise
+                                        </a>
+                                        <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
+                                            Extras
+                                        </a>
+                                        <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+                                            Media
+                                        </a>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </section>
+
+
+    <div style="text-align: center;">
+        <h1>Leaderboard</h1>
+    </div>
+
+
+    <div class="second-third-place">
+        <div class="second-place">
+            <p class ="numbers" style="color:gold; margin-bottom: -1.5rem;">#1</p>
+            <div class="dorm-logo">
+                <div class="circle" style="background: gold;">
+                    <img src="https://yld.me/raw/hQxL" alt="dorm logo" style="width: 100%; height: auto;">
+                </div>
+            </div>
+            <div class="pill" style="background: gold; display: flex; flex-direction: column; justify-content: center;">
+                <p style="text-align: center; color: white;">Duncan Hall</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="second-third-place">
+        <div class="second-place">
+            <p class ="numbers" style="color:silver; margin-bottom: -1.5rem;">#2</p>
+            <div class="dorm-logo">
+                <div class="circle" style="background: silver;">
+                    <img src="https://yld.me/cEzw" alt="dorm logo" style="width: 100%; height: auto; transform: scale(0.6); margin-top: -0.25rem;">
+                </div>
+            </div>
+            <div class="pill" style="background: silver; display: flex; flex-direction: column; justify-content: center;">
+                <p style="text-align: center; color: white;">Fisher Hall</p>
+            </div>
+        </div>
+
+        <div class="third-place">
+            <p class ="numbers" style="color:burlywood; margin-bottom: -1.5rem;">#3</p>
+            <div class="dorm-logo">
+                <div class="circle" style="background: burlywood;">
+                <img src="https://yld.me/b6oJ" alt="dorm logo" style="width: 100%; height: auto; transform: scale(0.6); margin-top: -0.25rem;"">
+                </div>
+            </div>
+            <div class="pill" style="background: burlywood; display: flex; flex-direction: column; justify-content: center;">
+                <p style="text-align: center; color: white;">Siegfried Hall</p>    
+            </div>
+        </div>
+    </div>
+    
+    <div class="pill-container">
+        <div class="pill-subcontainer">
+            <div class="numbers"><p>#4</p></div>
+            <div class="pill-other">
+                <p style="margin-left: 2rem;  margin-top: 0.75rem; color: white;">McGlinn Hall</p>
+                <img src="https://yld.me/irul" style="height: 50px; width: auto; margin-right: 2rem; transform: scale(0.75);" alt="dorm logo">
+            </div>
+            <div></div>
+        </div>
+        <div class="pill-subcontainer">
+            <div class="numbers"><p>#5</p></div>
+            <div class="pill-other">
+                <p style="margin-left:2rem;  margin-top: 0.75rem; color: white;">Howard Hall</p>
+                <img src="https://yld.me/aQ2A" style="height: 50px; width: auto; margin-right: 2rem; transform: scale(0.75);" alt="dorm logo">
+            </div>
+            <div></div>
+        </div>
+        <div class="pill-subcontainer">
+            <div class="numbers"><p>#6</p></div>
+            <div class="pill-other">
+                <p style="margin-left:2rem; margin-top: 0.75rem; color: white;">Morrissey Hall</p>
+                <img src="https://yld.me/doOd" style="height: 50px; width: auto; margin-right: 2rem; transform: scale(0.75);" alt="dorm logo">
+            </div>
+            <div></div>
+        </div>
+        <div class="pill-subcontainer">
+            <div class="numbers"><p>#7</p></div>
+            <div class="pill-other">
+                <p style="margin-left:2rem; margin-top: 0.75rem; color: white;">Pasquerilla West Hall</p>
+                <img src="https://yld.me/baLW" style="height: 50px; width: auto; margin-right: 2rem; transform: scale(0.75);" alt="dorm logo">
+            </div>
+            <div></div>
+        </div>
+        <div class="pill-subcontainer">
+            <div class="numbers"><p>#8</p></div>
+            <div class="pill-other">
+                <p style="margin-left:2rem;  margin-top: 1rem; margin-top: 0.75rem; color: white;">Johnson Family Hall</p>
+                <img src="https://yld.me/cAYU" style="height: 50px; width: auto; margin-right: 2rem; transform: scale(0.75);" alt="dorm logo">
+            </div>
+            <div></div>
+        </div>
+        <div class="pill-subcontainer" style="margin-bottom: 0;">
+            <div class="numbers"><p>#9</p></div>
+            <div class="pill-other">
+                <p style="margin-left:2rem;  margin-top: 1rem; margin-top: 0.75rem; color: white;">St. Edward's Hall</p>
+                <img src="https://yld.me/e8DJ" style="height: 50px; width: auto; margin-right: 2rem; transform: scale(0.75);" alt="dorm logo">
+            </div>
+            <div></div>
+        </div>
+       
+    </div>
+
+    <%- include ('../partials/footer.ejs') %>
+</body>
+</html>

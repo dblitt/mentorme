@@ -9,6 +9,22 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
         <link rel="stylesheet" href="/main-hero.css">
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <style>
+            .loader {
+  border: 2.5px solid #f3f3f3; /* Light grey */
+  border-top: 2.5px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 2s linear infinite;
+  margin-right: 6px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+        </style>
     </head>
     <body>
         <div style="flex: 1 0 auto;">
@@ -118,6 +134,7 @@
 <%- include ('../scripts/burger.ejs') %>
 
 function submitAction() {
+    document.getElementById('submit-button').innerHTML = '<div class="loader"></div>Loading...'
     axios.post('/api/v1/interests', {
         interests: document.getElementById('interests-input').value
     }).then(function (response) {

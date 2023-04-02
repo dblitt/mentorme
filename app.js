@@ -11,14 +11,15 @@ const MongoStore = require('connect-mongo'); //(session);
 const apiV1 = require('./api/v1/v1.js');
 
 // const adminRoute = require('./routes/admin.js');
-// const leaderboardRoute = require('./routes/leaderboard.js');
+const leaderboardRoute = require('./routes/leaderboard.js');
 // const slackInviteRoute = require('./routes/slackInvite.js');
-// const dashboardRoute = require('./routes/dashboard.js');
+const dashboardRoute = require('./routes/dashboard.js');
 const homeRoute = require('./routes/home.js');
 const logoutRoute = require('./routes/logout.js');
 const loginRoute = require('./routes/login.js');
 const joinRoute = require('./routes/join.js');
 const interestsRoute = require('./routes/interests.js');
+const resetRoute = require('./routes/reset.js')
 // const projectsRoute = require('./routes/projects.js');
 // const calendarRoute = require('./routes/calendar.js');
 
@@ -112,10 +113,11 @@ app.use('/login', loginRoute);
 app.use('/logout', logoutRoute);
 app.use('/join', joinRoute);
 app.use('/interests', interestsRoute);
-// app.use('/leaderboard', leaderboardRoute);
+app.use('/leaderboard', leaderboardRoute);
 // app.use('/admin', adminRoute);
 // app.use('/slack_invite', slackInviteRoute);
-// app.use('/dashboard', dashboardRoute);
+app.use('/dashboard', dashboardRoute);
+app.use('/reset', resetRoute)
 // app.use('/projects', projectsRoute);
 // app.use('/calendar', calendarRoute);
 

@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
                 // console.log(doc[0].interests);
                 // console.log(!doc[0].interests)
                 resOptions.firstName = doc[0].first_name ?? 'No First Name Given'
-                if (!doc[0].interests) {
+                if (!doc[0].interests || !doc[0].mentor) {
                     res.render('pages/interests.ejs', resOptions);
                 } else {
                     // console.log('fdfdsfs')

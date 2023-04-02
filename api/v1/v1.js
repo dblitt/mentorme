@@ -75,10 +75,10 @@ router.post('/interests', (req, res, next) => {
                     User.updateOne({ _id: id }, {$set: {
                         interests: req.body.interests
                     }}).exec().then(result => {
-                        res.status(200).json({
-                            success: true,
-                            redirectTo: '/dashboard'
-                        });
+                        // res.status(200).json({
+                        //     success: true,
+                        //     redirectTo: '/dashboard'
+                        // });
                         // call openai
                         User.find({
                             user_type: "mentor"
@@ -97,7 +97,7 @@ router.post('/interests', (req, res, next) => {
                             axios.post('https://api.openai.com/v1/chat/completions', {
                                 "model": "gpt-3.5-turbo",
                                 "messages": [
-                                    {"role": "system", "content": 'You are an AI robot. You will be given data about a mentee, who has given a description about themself, and a list of mentors identified by random identifiers, who have all provided descoriptions about themselves. The data will be provided in the following JSON format: {"mentee_description": "The Mentee Description", "mentors": [{"identifier": "59872", "description": "59872\'s description"}, {"identifier": "12373", "description": "12373\'s description"}]}. Pick the single best mentor for the mentee, and make your decision mostly in regards of academic interest. Output your response as only the following JSON format: {"mentor_identifier": "identifier", "reason_for_picking_mentor": "Reason", "reasons_for_not_picking_other_mentors": "Reason", "string_to_show_mentee_why_their_mentor_was_chosen": "Name was chosento be your mentor because ..."}. Always refer to mentors using their First Name. Do not use their identifier. DO NOT PROVIDE ANY ADDITIONAL EXPLANATION. YOUR ANSWER SHOULD BEGIN AND END WITH THE JSON RESPONSE.'},
+                                    {"role": "system", "content": 'You are an AI robot. You will be given data about a mentee, who has given a description about themself, and a list of mentors identified by random identifiers, who have all provided descoriptions about themselves. The data will be provided in the following JSON format: {"mentee_description": "The Mentee Description", "mentors": [{"identifier": "59872", "description": "59872\'s description"}, {"identifier": "12373", "description": "12373\'s description"}]}. Pick the single best mentor for the mentee, and make your decision mostly in regards of academic interest. When explaining the reason the mentor was be chosen, be specific and verbose in your reasoning. Output your response as only the following JSON format: {"mentor_identifier": "identifier", "reason_for_picking_mentor": "Reason", "reasons_for_not_picking_other_mentors": "Reason", "string_to_show_mentee_why_their_mentor_was_chosen": "Name was chosento be your mentor because ..."}. Always refer to mentors using their First Name. Do not use their identifier. DO NOT PROVIDE ANY ADDITIONAL EXPLANATION. YOUR ANSWER SHOULD BEGIN AND END WITH THE JSON RESPONSE.'},
                                     {"role": "user", "content": JSON.stringify(openAIObj)}
                                 ],
                                 "temperature": 0.8
@@ -106,14 +106,19 @@ router.post('/interests', (req, res, next) => {
                                     'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
                                 }
                             }).then(response => {
-                                console.log(response)
-                                console.log()
-                                console.log(response.data.choices[0].message)
+                                // console.log(response)
+                                // console.log()
+                                // console.log(response.data.choices[0].message)
                                 console.log(JSON.parse(response.data.choices[0].message.content))
                                 User.updateOne({ _id: id }, {$set: {
-                                    mentor: JSON.parse(response.data.choices[0].message.content).mentor_identifier
+                                    mentor: JSON.parse(response.data.choices[0].message.content).mentor_identifier,
+                                    mentor_reasoning: JSON.parse(response.data.choices[0].message.content).string_to_show_mentee_why_their_mentor_was_chosen
                                 }}).exec().then(result => {
                                     console.log('saved mentor')
+                                    res.status(200).json({
+                                        success: true,
+                                        redirectTo: '/dashboard'
+                                    });
                                 }).catch(err => {
 
                                 })

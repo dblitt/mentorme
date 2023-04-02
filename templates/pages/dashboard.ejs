@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Admin | SLUH Hack Club</title>
-  <%- include('../partials/head.ejs') %>
+  <title>Dashboard - MentorMe</title>
+  <%- include ('../partials/head.ejs') %>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Bulma Version 0.7.1-->
@@ -11,15 +12,17 @@
 </head>
 
 <body>
-  <div style="flex: 1 0 auto;">
+  <div>
     <section class="hero is-info is-medium is-bold">
       <div class="hero-head">
         <nav class="navbar" style="margin-bottom:0;">
           <div class="container">
             <div class="navbar-brand">
-              <a class="navbar-item" href="../">
-                <img src="/short.png" alt="Logo">
-              </a>
+              <span class="navbar-item">
+                <a class="navbar-item" href="/">
+                  <img src="/short.png" alt="Logo">
+                </a>
+              </span>
               <span class="navbar-burger burger" data-target="navbarMenu">
                 <span></span>
                 <span></span>
@@ -29,11 +32,6 @@
             <div id="navbarMenu" class="navbar-menu">
               <div class="navbar-end">
                 <div class="tabs is-right">
-                  <ul style="border-bottom-style: none;">
-                    <li class="is-active"><a>Admin</a></li>
-                    <li><a href="/admin/projects">Projects</a></li>
-                    <li><a href="/admin/submissions">Submissions</a></li>
-                  </ul>
                   <span class="navbar-item">
                     <a class="button is-white is-outlined" href="/logout">
                       <span class="icon">
@@ -54,172 +52,247 @@
       <div style="margin-left:10px;margin-right:10px;margin-top:16px;">
         <section class="hero is-info welcome is-small">
           <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                Hello, <%= //firstName %>.
+            <span class="container" style="text-align: center">
+              <h1 class="title" style="font-weight: 500">
+                <p>Welcome back, <%= firstName %>!</p>
               </h1>
-              <h2 class="subtitle">
-                "You're welcome." - Daniel Blittschau, 2018
-              </h2>
+              
+              <div>
+                <a href="" class="button is-link">Join Zoom Meeting</a>
+              </div>
             </div>
           </div>
         </section>
-        <section class="info-tiles">
+        <section class="info-tiles" style="margin-top: 1rem;">
           <div class="tile is-ancestor has-text-centered">
             <div class="tile is-parent">
               <article class="tile is-child box">
-                <p class="title"><%= //studentCount %></p>
-                <p class="subtitle">Members</p>
+                <header class="card-header" style="margin-top: -1rem;">
+                  <p class="card-header-title has-text-weight-semibold has-text-black">
+                    Your Mentor
+                  </p>
+                </header>
+                <div class="title is-size-4 has-text-weight-semibold" style="padding-top:10px;margin-bottom:15px;">
+                  <p><%= mentorFirstName %> <%= mentorLastName %></p>
+                </div>
+                <div>              
+                  <img src="<%- mentorImageUrl %>" alt="mentor picture" style="height: 7rem; border: 2px solid black;">
+                  </div>
+                <div>
+                  <p style="text-align: justify">
+                    <%= mentorInterests %>
+                  </p><br>
+                  <p style="text-align: justify">
+                    <%= mentorReasoning %>
+                  </p>
+                </div>
+                <div>
+                  <!-- <a href="" class="button is-link">Learn more</a> -->
+                </div>
               </article>
             </div>
-            <% if (currentProjectExists) { %>
               <div class="tile is-parent">
                 <article class="tile is-child box">
-                  <p class="title"><%= //currentProjectTitle %></p>
-                  <p class="subtitle">Current Project</p>
+                  <header class="card-header" style="margin-top: -1rem;">
+                    <p class="card-header-title has-text-weight-semibold has-text-black">
+                      Upcoming Meetings
+                    </p>
+                  </header>
+                  <div style="display: flex; align-items: flex-start; flex-direction: column; gap: 1rem; margin-top: 1rem;margin-left:10rem;">
+                    <div style="display: flex; justify-content: space-around; gap:2rem;">
+                      <div class="cal-icon" style="background:grey; width: 4.5rem; height: 5rem;">
+                        <div style="border: 1px solid black; margin: 0.25rem; background-color:white; padding-top: 0.25rem; padding-bottom: 0.25rem; font-size: 18px;  font-weight: 500;">
+                          <p>April</p>
+                        </div>
+                        <div style="color: white; font-size: 24px;">
+                          <p></p>2</p>
+                        </div>
+                      </div>
+
+                      <div style="display: flex; flex-direction: column; justify-content: center;">
+                        <div>
+                          <p>Mentor Introduction</p>
+                        </div>
+                        <div>
+                          <p style="text-align:left;">12:00pm - 1:00pm</p>
+                        </div>
+                      </div>
+                    </div>
+                    <hr style="margin: 0;">
+                    <div style="display: flex; justify-content: space-around; gap:2rem;">
+                      <div class="cal-icon" style="background:grey; width: 4.5rem; height: 5rem;">
+                        <div style="border: 1px solid black; margin: 0.25rem; background-color:white; padding-top: 0.25rem; padding-bottom: 0.25rem; font-size: 18px;  font-weight: 500;">
+                          <p>April</p>
+                        </div>
+                        <div style="color: white; font-size: 24px;">
+                          <p></p>10</p>
+                        </div>
+                      </div>
+                      <div style="display: flex; flex-direction: column; justify-content: center;">
+                        <div>
+                          <p>Career Roadmap</p>
+                        </div>
+                        <div>
+                          <p style="text-align:left;">12:00pm - 1:00pm</p>
+                        </div>
+                      </div>
+                    </div>
+                    <hr style="margin: 0;">
+                    <div style="display: flex; justify-content: space-around; gap:2rem;">
+                      <div class="cal-icon" style="background:grey; width: 4.5rem; height: 5rem;">
+                        <div style="border: 1px solid black; margin: 0.25rem; background-color:white; padding-top: 0.25rem; padding-bottom: 0.25rem; font-size: 18px;  font-weight: 500;">
+                          <p>April</p>
+                        </div>
+                        <div style="color: white; font-size: 24px;">
+                          <p></p>17</p>
+                        </div>
+                      </div>
+                      <div style="display: flex; flex-direction: column; justify-content: center;">
+                        <div>
+                          <p>Meeting about Life Advice</p>
+                        </div>
+                        <div>
+                          <p style="text-align:left;">12:00pm - 1:00pm</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                  </div>
+                  <hr>
+                  <a href="">view more...</a>
                 </article>
               </div>
-              <div class="tile is-parent">
-                <article class="tile is-child box">
-                  <p class="title"><%= //currentProjectSubmissions %></p>
-                  <p class="subtitle">Submissions</p>
-                </article>
-              </div>
-            <% } else { %>
-              <div class="tile is-parent">
-                <article class="tile is-child box">
-                  <p class="title"><b>No Current Project</b></p><a href="/admin/projects/create" class="button is-success" style="margin-top:-10px;">Create New</a>
-                  <!-- <p class="subtitle">Current Project</p> -->
-                </article>
-              </div>
-              <div class="tile is-parent">
-                <article class="tile is-child box">
-                  <p class="title">N/A</p>
-                  <p class="subtitle">Submissions</p>
-                </article>
-              </div>
-            <% } %>
-          </div>
+            </div>
         </section>
       </div>
-      <div class="columns" style="margin-left:0px; padding: 0px 10px 0px 10px;">
-        <div class="column is-6">
-          <div class="card events-card">
-            <header class="card-header">
-              <p class="card-header-title">
-                Unreviewed Submissions
-              </p>
-              <!-- <a href="#" class="card-header-icon" aria-label="more options">
-                <span class="icon">
-                  <i class="fa fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </a> -->
-            </header>
-            <div class="card-table">
-              <div class="content">
-                <table class="table is-fullwidth is-striped">
-                  <tbody>
-                    <% //newSubmissions.forEach(submission => { %>
-                    <tr>
-                      <td width="0%" style="padding:0 0 0 10px;"><!--<i class="far fa-bullet"></i>--></td>
-                      <td><%= submission.title %></td>
-                      <td class="level-right"><a class="button is-small is-warning" href="/admin/submissions/<%= //submission._id.toString() %>">Review</a></td>
-                    </tr>
-                  <% //}); %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <footer class="card-footer">
-            <div class="container has-text-centered" style="padding: 7px 0;">
-              <a href="/admin/submissions" class="button is-link">View All Submissions</a>
-            </div>
-          </footer>
-        </div>
-      </div>
-      <div class="column is-6">
-        <!-- <div class="card">
-          <header class="card-header">
-            <p class="card-header-title">
-              Inventory Search
-            </p>
-            <a href="#" class="card-header-icon" aria-label="more options">
-              <span class="icon">
-                <i class="fa fa-angle-down" aria-hidden="true"></i>
-              </span>
-            </a>
-          </header>
-          <div class="card-content">
-            <div class="content">
-              <div class="control has-icons-left has-icons-right">
-                <input class="input is-large" type="text" placeholder="">
-                <span class="icon is-medium is-left">
-                  <i class="fa fa-search"></i>
-                </span>
-                <span class="icon is-medium is-right">
-                  <i class="fa fa-check"></i>
-                </span>
+
+
+  <div class="container">
+    <div style="margin-left:10px;margin-right:10px;margin-top:16px;">
+      <section class="info-tiles" style="margin-top: 1rem;">
+        <div class="tile is-ancestor has-text-centered">
+          <!-- <div class="tile is-parent">
+            <article class="tile is-child box">
+              <header class="card-header" style="margin-top: -1rem;">
+                <p class="card-header-title">
+                  Milestones
+                </p>
+              </header>
+
+              
+              <ul style="display: flex; flex-direction: column; padding:0; margin:0;padding-top:20px;">
+                <li style="margin-bottom:10px;">
+                  <label style="display:inline-block; width:80%;"><input type="checkbox"> Buy groceries</label>
+                  <button style="border:none; background-color:red; color:white; padding:5px 10px; border-radius:5px;">Delete</button>
+                </li>
+                <li style="margin-bottom:10px;">
+                  <label style="display:inline-block; width:80%;"><input type="checkbox"> Walk the dog</label>
+                  <button style="border:none; background-color:red; color:white; padding:5px 10px; border-radius:5px;">Delete</button>
+                </li>
+                <li style="margin-bottom:10px;">
+                  <label style="display:inline-block; width:80%;"><input type="checkbox"> Pay bills</label>
+                  <button style="border:none; background-color:red; color:white; padding:5px 10px; border-radius:5px;">Delete</button>
+                </li>
+                <li style="margin-bottom:10px;">
+                  <label style="display:inline-block; width:80%;"><input type="checkbox"> Call mom</label>
+                  <button style="border:none; background-color:red; color:white; padding:5px 10px; border-radius:5px;">Delete</button>
+                </li>
+              </ul>
+
+
+            </article>
+          </div> -->
+          <div class="columns">
+            <div class="column is-6">
+              <div class="box">
+
+
+
+
+
+
+              <div class="">
+                <header class="">
+                  <p class="card-header-title has-text-weight-semibold has-text-black">
+                    Mentee Milestones
+                  </p>
+                  <!-- <a href="#" class="card-header-icon" aria-label="more options">
+                    <span class="icon">
+                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </a> -->
+                </header>
+                <div class="card-table">
+                  <div class="content">
+                    <table class="table is-fullwidth is-striped">
+                      <tbody>
+                        
+                        <tr>
+                          <td width="0%" style="padding:0 0 0 10px;"><!--<i class="far fa-bullet"></i>--></td>
+                          <td>First draft of resume</td>
+                          <td class="level-right"><a class="button is-small is-success">Review</a></td>
+                        </tr>
+                      
+                        <tr>
+                          <td width="0%" style="padding:0 0 0 10px;"><!--<i class="far fa-bullet"></i>--></td>
+                          <td>Make a time-management schedule</td>
+                          <td class="level-right"><a class="button is-small is-success">Review</a></td>
+                        </tr>
+                      
+                        <tr>
+                          <td width="0%" style="padding:0 0 0 10px;"><!--<i class="far fa-bullet"></i>--></td>
+                          <td>Find three hours per week to learn a skill</td>
+                          <td class="level-right"><a class="button is-small is-success">Review</a></td>
+                        </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
               </div>
+              <footer class="card-footer">
+                <div class="container has-text-centered" style="padding: 7px 0;">
+                  <a href="/admin/submissions" class="button is-link">View All Milestones</a>
+                </div>
+              </footer>
             </div>
+          
+</div>
+          
           </div>
-        </div> -->
-        <div class="card">
-          <header class="card-header">
-            <p class="card-header-title">
-              User Search
-            </p>
-            <!-- <a href="#" class="card-header-icon" aria-label="more options">
-              <span class="icon">
-                <i class="fa fa-angle-down" aria-hidden="true"></i>
-              </span>
-            </a> -->
-          </header>
-            <div class="card-content">
-              <!-- <div class="content"> -->
-              <form action="javascript:void(0);" id="user-search-form">
-                <div class="field">
-                  <div class="control has-icons-left has-icons-right">
-                    <input class="input is-large" type="text" placeholder="Name" name="user-search">
-                    <span class="icon is-medium is-left">
-                      <i class="fa fa-search"></i>
-                    </span>
-                    <span class="icon is-medium is-right" style="cursor: pointer;">
-                      <i class="fa fa-check"></i>
-                    </span>
-                    <!-- <button class="icon is-medium is-right">
-                      <i class="fa fa-check"></i>
-                    </button> -->
-                </div>
-                </div>
-                <div class="field">
-                  <div class="control">
-                    <button class="button is-link">Search</button>
-                    <a href="/admin/users" class="button is-link">View all users</a>
+            
+            <div class="column is-6">
+
+              <div class="tile is-parent">
+                <article class="tile is-child box">
+                  <header class="card-header" style="margin-top: -1rem;">
+                    <p class="card-header-title has-text-weight-semibold has-text-black">
+                      Have meeting suggestions? Send a chat to your mentor:
+                    </p>
+                  </header>
+  
+  
+  
+                  <textarea id="" name="" rows="4" cols="48" placeholder="Enter text here" style="resize: none;margin-top:15px;"></textarea>
+  
+                  <div>
+                    <a href="" class="button is-link">Send</a>
                   </div>
-                </div>
-              <!-- </div> -->
-              </form>
+  
+                  <div>
+                  </div>
+                </article>
+              </div>
+              
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
   </div>
-  <% include ../partials/footer.ejs %>
+  </div>
+  <%- include ('../partials/footer.ejs') %>
   <script type="text/javascript">
-<% include ../scripts/burger.ejs %>
-
-  let userSearchForm = document.getElementById('user-search-form');
-  console.dir(userSearchForm);
-  console.log(userSearchForm[0].value);
-  userSearchForm.onsubmit = function() {
-    // console.log(userSearchForm[0].value);
-    if (userSearchForm[0].value.trim() !== '')
-    window.location = '/admin/users/search/' + userSearchForm[0].value.trim();
-    // console.log('/admin/users/search/' + userSearchForm[0].value);
-  };
-
+<%- include ('../scripts/burger.ejs') %>
   </script>
+
 </body>
 
 </html>

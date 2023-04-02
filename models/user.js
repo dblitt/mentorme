@@ -25,6 +25,12 @@ const userSchema = new mongoose.Schema({
     // mentor is if user is a mentee (their assignment) and will be an object _id
     mentor: {
         type: String
+    },
+    image_url: {
+        type: String
+    },
+    mentor_reasoning: {
+        type: String
     }
 });
 
