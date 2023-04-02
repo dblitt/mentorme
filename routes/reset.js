@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
                     interests: '',
                     mentor: ''
                 }}).exec().then(response => {
-                    res.redirect('/');
+                    res.redirect('/dashboard');
                 }).catch(err => {
                     console.error(err)
                 })
